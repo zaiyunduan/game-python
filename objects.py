@@ -33,7 +33,7 @@ class Paper(Tool):
         if self.flag == False:
             print "由于一些原因，你还不能使用这张纸"
         else:
-            print self.value
+			print "纸上写着数字%d，已经很模糊了" % self.value
         
     def make_tool(self, tool):
         tool = name(tool.__doc__)
