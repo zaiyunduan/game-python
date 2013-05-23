@@ -60,15 +60,75 @@ class Pole(Tool):
             print "长木干，可以用来够到高处的东西"
     
     def make_tool(self, tool):
-        print "%s 和 %s 不能组合" % (name(self.__doc__), name(tool.__doc__))
+        if self.flag == False:
+            print "由于一些原因，你还不能使用这个长木干"
+        else:
+            print "%s 和 %s 不能组合" % (name(self.__doc__), name(tool.__doc__))
     
     def use_tool(self, obj):
-        if obj == None:
-            print "长木干用来做什么？"
+        if self.flag == True:
+            if obj == None:
+                print "长木干用来做什么？"
+            else:
+                obj.flag = True
+                print "你拿到了%s" % name(obj.__doc__)    
         else:
-            obj.flag = True
-            print "你拿到了%s" % name(obj.__doc__)    
-           
+            print  "由于一些原因，你还不能使用这个长木干"
+            
+class Handle(Tool):
+    """
+    手柄
+    """
+    def __init__(self, flag = False):
+        self.newtool = 'box'
+        self.flag = flag 
+    
+    def examine(self):
+        if self.flag == False:
+            print "由于一些原因，你还不能使用这个手柄"  
+        else:
+            print "看起来像是箱子的一部分"
+    
+    def make_tool(self, tool):
+        if self.flag == True and self.newtool == tool.newtool:
+            print "%s 和 没有手柄的%s 组成成了 %s" %                          \
+                        (name(self.__doc__), name(tool.__doc__), name(tool.__doc__))
+            tool.flag = True
+        else:
+            print "%s 和 %s 不能组合" % (name(self.__doc__), name(tool.__doc__))  
+            
+    def use_tool(self, obj):
+        print "不能是用手柄"
+ 
+class Box(Tool):
+    """
+    柜子
+    """
+    def __init__(self, value = None, flag = False):
+        self.newtool = 'box'
+        self.flag = flag
+        self.value = value
+        
+    def examine(self):
+        if self.flag == False:
+            print "柜子好像少了手柄，打不开"
+        elif self.value == None:
+            print "柜子里什么也没有"
+        else:
+            self.value.flag = True
+            print "柜子里发现了一个%s" % name(self.value.__doc__)
+            
+    def make_tool(self, tool):
+        if self.flag == False and self.newtool == tool.newtool:
+            print "%s 和 没有手柄的%s 组成成了 %s" %                          \
+                        (name(tool.__doc__), name(self.__doc__), name(self.__doc__))
+            self.flag = True
+        else:
+            print "%s 和 %s 不能组合" % (name(self.__doc__), name(tool.__doc__))  
+            
+    def use_tool(self):
+        print "实在是想不出柜子能怎么用"
+                
 if __name__ == '__main__':
 	door = Door(1234)
 
@@ -79,12 +139,21 @@ if __name__ == '__main__':
 	paper = Paper()
 	pole = Pole(True)
 	
-	print "paper is %r" % paper.__doc__
 	paper.examine()
 	paper.make_tool(pole)
 	paper.use_tool()
 	
 	print "after use pole"
 	pole.examine()
-	pole.use_tool(paper)
+#	pole.use_tool(paper)
+	paper.examine()
+	
+	print "handle and box"
+	handle = Handle(True)
+	handle.examine()
+	
+	box = Box(paper, False)
+#	handle.make_tool(box)
+	box.make_tool(handle)
+	box.examine()
 	paper.examine()
