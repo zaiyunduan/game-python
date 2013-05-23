@@ -3,8 +3,8 @@
 """
 描述了在游戏中可能遇到或使用的几个物体
 """
-from sys import exit
 from untils import object_name as name
+
 class Tool(object): pass
 
 class Door(object):
