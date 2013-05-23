@@ -4,7 +4,7 @@
 描述了在游戏中可能遇到或使用的几个物体
 """
 from sys import exit
-
+from untils import object_name as name
 class Tool(object): pass
 
 class Door(object):
@@ -36,8 +36,9 @@ class Paper(Tool):
             print self.value
         
     def make_tool(self, tool):
-        tool = tool.__doc__
-        print "%s 和 %s 不能组合" % (self.__doc__, tool)
+        tool = name(tool.__doc__)
+        n = name(self.__doc__)
+        print "%s 和 %s 不能组合" % (n, tool)
         return 'no_make'  
         
     def use_tool(self):
@@ -59,14 +60,14 @@ class Pole(Tool):
             print "长木干，可以用来够到高处的东西"
     
     def make_tool(self, tool):
-        print "%s 和 %s 不能组合" % (self.__doc__, tool.__doc__)
+        print "%s 和 %s 不能组合" % (name(self.__doc__), name(tool.__doc__))
     
     def use_tool(self, obj):
         if obj == None:
             print "长木干用来做什么？"
         else:
             obj.flag = True
-            print "你拿到了%s" % obj.__doc__    
+            print "你拿到了%s" % name(obj.__doc__)    
            
 if __name__ == '__main__':
 	door = Door(1234)

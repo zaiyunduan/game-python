@@ -14,3 +14,15 @@ def create_door_key():
 	return randint(1000,9999)
 
 
+def object_name(s):
+    """
+    去掉 __doc__ 中，刚开始的 '\n' 和 两端的空格 
+    """
+    s = s.lstrip('\n')
+    return s.strip()
+    
+    
+    
+
+if __name__  ==  "__main__":
+    print "%r" % object_name("\n    中国欢迎你    ")
