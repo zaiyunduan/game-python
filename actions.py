@@ -36,7 +36,9 @@ def exam(name):
 	"""
 	查看一个物体
 	"""
-	if name in objs:
+	if name == 'door':
+		return objs[name].examine()
+	elif name in objs:
 		objs[name].examine()
 		return 'none'
 	else:
