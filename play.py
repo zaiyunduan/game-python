@@ -16,7 +16,6 @@ def objects_in_part1():
 	
 	return 'paper'
 
-
 def print_descriptions():
 	"""
 	打印开始的描述
