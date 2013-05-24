@@ -18,7 +18,7 @@ class Door(object):
 			return 'key_right'
 		else:
 			print "输入密码错误"
-			return "key_error"
+			return "none"
 
 class Paper(Tool):
     """
