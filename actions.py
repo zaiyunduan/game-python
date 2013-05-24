@@ -37,7 +37,9 @@ def exam(name):
 	查看一个物体
 	"""
 	if name == 'door':
-		return objs[name].examine()
+		print "这是一个4位数字密码门，请输入密码"
+		key = int(raw_input('> '))
+		return objs[name].open(key)
 	elif name in objs:
 		objs[name].examine()
 		return 'none'
