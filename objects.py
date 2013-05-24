@@ -8,6 +8,9 @@ from untils import object_name as name
 class Tool(object): pass
 
 class Door(object):
+	"""
+	密码门
+	"""
 	def __init__(self, key):
 		self.key = key
 	
@@ -19,6 +22,8 @@ class Door(object):
 		else:
 			print "输入密码错误"
 			return "none"
+	def make_tool(self, tool):
+		print "密码门不能和%s组合" % name(tool.__doc__)
 
 class Paper(Tool):
     """
@@ -41,7 +46,7 @@ class Paper(Tool):
         print "%s 和 %s 不能组合" % (n, tool)
         return 'no_make'  
         
-    def use_tool(self):
+    def use_tool(self, obj):
         print "你不能以任何方式使用纸张"
         return 'no_use'
         
@@ -126,7 +131,7 @@ class Box(Tool):
         else:
             print "%s 和 %s 不能组合" % (name(self.__doc__), name(tool.__doc__))  
             
-    def use_tool(self):
+    def use_tool(self, obj):
         print "实在是想不出柜子能怎么用"
                 
 if __name__ == '__main__':
