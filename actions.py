@@ -76,7 +76,13 @@ def no_obj():
 	"""
 	print "没有这个物体,请重新输入指令"
 
-states = {'no_obj': no_obj,'none': none}
+def key_right():
+	"""
+	"""
+	print("欢迎再次来玩")
+	exit(1)
+
+states = {'no_obj': no_obj,'none': none, 'key_right': key_right}
 	
 def parse_comd(comd):
 	"""
