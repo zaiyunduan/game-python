@@ -12,6 +12,7 @@ def objects_in_part1():
 	paper = objects.Paper(key, True)
 
 	add_a_object('paper', paper)
+	add_a_object('door',door)
 	
 	return 'paper'
 
