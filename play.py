@@ -32,6 +32,24 @@ def objects_in_part2():
 
 	return 'paper', 'pole'
 
+def objects_in_part3():
+	"""
+	生成第三关的物体
+	"""
+	key = untils.create_door_key()
+
+	door = objects.Door(key)
+	paper = objects.Paper(key, False)
+	handle = objects.Handle(True)
+	box = objects.Box(paper,False)
+
+	add_a_object('door', door)
+	add_a_object('paper',paper)
+	add_a_object('handle',handle)
+	add_a_object('box',box)
+
+	return 'paper', 'handle', 'box'
+
 def print_descriptions():
 	"""
 	打印开始的描述
@@ -57,12 +75,32 @@ def print_pole(flag):
 	else:
 		print "地上有个长木干[pole]，好像已经断了"
 
+def print_handle(flag):
+	"""
+	打印手柄的描述
+	"""
+	if flag == True:
+		print "在一个角落里有一个被丢弃的手柄[handle]"
+	else:
+		print "那边角落本有一个手柄[handle]，怎么找不了!"
+
+def print_box(flag):
+	"""
+	打印柜子的描述
+	"""
+	if flag == True:
+		print "有一个柜子[box]，门很容易就能打开"
+	else:
+		print "柜子[box]的门有点问题，打不开啦。。。"
+
 if __name__ == "__main__":
 
 	print_descriptions()
 	
-	objects_in_part1()
-	print_paper(True)
+	objects_in_part3()
+
+	print_handle(True)
+	print_box(False)
 
 	print "做你该做的事吧"
 	while True:
